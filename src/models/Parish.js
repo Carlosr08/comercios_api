@@ -3,7 +3,7 @@ const { Schema } = mongoose
 
 const ParishSchema = new Schema({
 	idMunicipality: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: Schema.Types.ObjectId,
 		require: true,
 		ref: "Municipality"
 	},

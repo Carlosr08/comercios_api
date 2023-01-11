@@ -20,7 +20,7 @@ export const createPlan = async (input) => {
   }
 };
 
-export const getPlans = async (input) =>{
+export const getPlans = async () =>{
   try{
     const plans = await Plan.find()
     return plans

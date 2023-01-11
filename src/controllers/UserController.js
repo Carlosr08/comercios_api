@@ -26,6 +26,15 @@ export const login = async (input) => {
   }
 }
 
+export const getUsers = async ()=>{
+  try{
+    const users = await User.find()
+    return users
+  }catch(error){
+    console.log(error.message)
+  }
+}
+
 export const createUser = async (input) => {
   const body = input
   body.email = body.email.toLowerCase()

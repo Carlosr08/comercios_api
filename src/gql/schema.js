@@ -36,6 +36,55 @@ const typeDefs = `#graphql
     name: String
   }
 
+  type City {
+    id: ID
+    idState: ID
+    name: String
+  }
+
+  type Trade {
+    id: ID
+    idReason: ID
+    idDirection: ID
+    idContact: ID
+    name: String
+    rif: String
+    description: String
+    gps: String
+    stateRegister: String
+    createAt: String
+  }
+
+  type Direction {
+    id: ID
+    idMunicipality: ID
+    idState: ID
+    idCity: ID
+    idParish: ID
+    street: String
+    sector: String
+    local: String
+    createAt: String
+  }
+
+  type Contact {
+    id: ID
+    nroContact: String
+    facebook: String
+    twitter: String
+    instagram: String
+    telegram: String
+    whatsapp: String
+    email: String
+    sitioWeb: String
+    createAt: String
+  }
+
+  type Reason {
+    name: String
+    createAt: String
+  }
+
   input UserInput {
     name: String!
     username: String!
@@ -68,10 +117,47 @@ const typeDefs = `#graphql
     idMunicipality: ID!
   }
 
+  input CityInput{
+    name: String!
+    idState: ID!
+  }
 
+  input TradeInput{
+    idUser: ID!
+    idReason: ID!
+    idDirection: ID!
+    idContact: ID!
+    name: String!
+    rif: String!
+    description: String!
+    gps: String
+    stateRegister: String
+  }
+
+  input ContactInput{
+    nroContact: String!
+    facebook: String
+    twitter: String
+    instagram: String
+    telegram: String
+    whatsapp: String
+    email: String
+    sitioWeb: String
+  }
+
+  input DirectionInput{
+    idMunicipality: ID!
+    idState: ID!
+    idCity: ID!
+    idParish: ID!
+    street: String
+    sector: String
+    local: String
+    createAt: String
+  }
   type Query {
     # User
-    getUser(id: ID, username: String): User
+    getUsers: [User]
 
     # Plans
     getPlans: [Plan]
@@ -83,7 +169,19 @@ const typeDefs = `#graphql
     getMunicipalities(state: String!): [Municipality]
 
     # Parishes
-    getParishes(municipality: String): [Parish]
+    getParishes(municipality: String!): [Parish]
+
+    # Cities
+    getCities(state: String!): [City]
+
+    # Contacts
+    getContact(trade: String!): Contact
+
+    # Trades
+    getTrades(username: String!): [Trade]
+
+    # Direction
+    getDirection(trade: String!): [Direction]
   }
 
   type Mutation {
@@ -103,7 +201,18 @@ const typeDefs = `#graphql
 
     # Parishes
     createParish(input: ParishInput): Parish
+
+    # Cities
+    createCity(input: CityInput): City
+
+    # Contacts
+    createContact(input: ContactInput): Contact
+
+    # Trades
+    createTrade(input: TradeInput!): Trade
+
+    # Direction
+    createDirection(input: DirectionInput!): Direction
   }
 `
-
 export default typeDefs

@@ -23,24 +23,6 @@ const server = new ApolloServer({
   resolvers,
 });
 
-// const server = ()=>{
-//   const serverApollo = new ApolloServer({
-//     typeDefs,
-//     resolvers
-//   })
-
-//   serverApollo.listen().then((res)=>{
-//     console.clear()
-//     console.log(`Servidor en marcha: ${res.url}`)
-//   }).catch((err)=>{
-//     console.log(`Error en servidor ${err}`)
-//   })
-// }
-
-// Passing an ApolloServer instance to the `startStandaloneServer` function:
-//  1. creates an Express app
-//  2. installs your ApolloServer instance as middleware
-//  3. prepares your app to handle incoming requests
 const { url } = await startStandaloneServer(server, {
   listen: { port: 4000 },
 });

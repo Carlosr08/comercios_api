@@ -1,16 +1,16 @@
-import { createUser, login } from "../controllers/UserController.js"
+import { createUser, getUsers, login } from "../controllers/UserController.js"
 import { createPlan, getPlans } from "../controllers/PlanController.js"
 import { createState, getStates } from "../controllers/StateController.js"
 import { createMunicipality, getMunicipalities } from "../controllers/MunicipalityController.js"
 import { createParish, getParishes } from "../controllers/ParishController.js"
+import { createCity, getCities } from "../controllers/CityController.js"
+import { createTrade, getTrades } from "../controllers/TradeController.js"
+import { createContact, getContact } from "../controllers/ContactController.js"
 
 const resolvers = {
   Query: {
     // User
-    getUser: () => {
-      console.log("Obteniendo Usuario")
-      return null
-    },
+    getUsers: () => getUsers(),
     // Plans
     getPlans: () => getPlans(),
 
@@ -21,7 +21,16 @@ const resolvers = {
     getMunicipalities: (_, { state }) => getMunicipalities(state),
 
     // Parishes
-    getParishes: (_,{ municipality }) => getParishes(municipality),
+    getParishes: (_, { municipality }) => getParishes(municipality),
+
+    // Cities
+    getCities: (_, { state }) => getCities(state),
+
+    // Contacts
+    getContact: (_,{ trade }) => getContact(trade),
+
+    // Trades
+    getTrades: (_, { username }) => getTrades(username)
   },
 
   Mutation: {
@@ -41,6 +50,15 @@ const resolvers = {
 
     // Parishes
     createParish: (_, { input }) => createParish(input),
+
+    // Cities
+    createCity: (_, { input }) => createCity(input),
+
+    // Contact
+    createContact: (_,{ input }) => createContact(input),
+
+    // Trades
+    createTrade: (_, { input }) => createTrade(input)
   }
 }
 
