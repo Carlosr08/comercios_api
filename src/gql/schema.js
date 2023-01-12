@@ -150,11 +150,16 @@ const typeDefs = `#graphql
     idState: ID!
     idCity: ID!
     idParish: ID!
-    street: String
-    sector: String
+    street: String!
+    sector: String!
     local: String
     createAt: String
   }
+
+  input ReasonInput{
+    name: String!
+  }
+
   type Query {
     # User
     getUsers: [User]
@@ -182,6 +187,9 @@ const typeDefs = `#graphql
 
     # Direction
     getDirection(trade: String!): [Direction]
+
+    # Reasons
+    getReasons: [Reason]
   }
 
   type Mutation {
@@ -213,6 +221,9 @@ const typeDefs = `#graphql
 
     # Direction
     createDirection(input: DirectionInput!): Direction
+
+    # Reasons
+    createReason(input: ReasonInput!): Reason
   }
 `
 export default typeDefs

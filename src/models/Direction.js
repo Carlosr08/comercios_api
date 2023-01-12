@@ -32,7 +32,7 @@ const DirectionSchema = new Schema({
   },
   local: {
     type: String,
-    require: true,
+    unique: true
   },
   createAt: {
     type: Date,

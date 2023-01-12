@@ -6,6 +6,8 @@ import { createParish, getParishes } from "../controllers/ParishController.js"
 import { createCity, getCities } from "../controllers/CityController.js"
 import { createTrade, getTrades } from "../controllers/TradeController.js"
 import { createContact, getContact } from "../controllers/ContactController.js"
+import { createDirection } from "../controllers/DirectionController.js"
+import { createReason } from "../controllers/ReasonController.js"
 
 const resolvers = {
   Query: {
@@ -27,7 +29,7 @@ const resolvers = {
     getCities: (_, { state }) => getCities(state),
 
     // Contacts
-    getContact: (_,{ trade }) => getContact(trade),
+    getContact: (_, { trade }) => getContact(trade),
 
     // Trades
     getTrades: (_, { username }) => getTrades(username)
@@ -55,10 +57,16 @@ const resolvers = {
     createCity: (_, { input }) => createCity(input),
 
     // Contact
-    createContact: (_,{ input }) => createContact(input),
+    createContact: (_, { input }) => createContact(input),
 
     // Trades
-    createTrade: (_, { input }) => createTrade(input)
+    createTrade: (_, { input }) => createTrade(input),
+
+    // Direction
+    createDirection: (_, { input }) => createDirection(input),
+
+    // Reasons
+    createReason: (_, { input }) => createReason(input)
   }
 }
 

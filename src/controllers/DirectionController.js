@@ -1,9 +1,16 @@
-import Direction from "./../models/Direction"
+import Direction from "./../models/Direction.js"
 
 
 export const createDirection = async (input) => {
   const body = input
-  
+  const { sector } = body
+
+  console.log(input)
+
+  const verifyDirection = await Direction.findOne({sector})
+
+  if (verifyDirection) throw new Error("Dirección ya existe")
+
   try {
     const direction = new Direction(body);
     direction.save();
@@ -21,4 +28,3 @@ export const getDirections = async () =>{
       console.log(error.message)
     }
 } 
-
